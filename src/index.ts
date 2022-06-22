@@ -12,7 +12,7 @@ app.get("/file", (req, res) => {
   if (!dir) return res.status(400).send("Dir is required");
 
   try {
-    const path = _path.resolve(`${app.path}/${decodeURI(dir)}`);
+    const path = _path.resolve(`${app.path}${decodeURI(dir)}`);
     const file = existsSync(path) ? createReadStream(path) : null;
 
     if (file) {
