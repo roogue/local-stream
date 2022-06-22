@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import { address } from "ip";
 
 export default class BaseClient {
   port: number;
@@ -16,8 +17,9 @@ export default class BaseClient {
   }
 
   public listen(): void {
-    this.client.listen(this.port, () =>
-      console.log("Listen on port: ", this.port)
-    );
+    this.client.listen(this.port, () => {
+      console.log("Listen on port: ", this.port);
+      console.log("Your IP Address: ", address());
+    });
   }
 }
