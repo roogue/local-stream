@@ -13,10 +13,7 @@ export default class Util {
           const path = `${dir}/${file.name}`;
           if (file.isDirectory()) return await loadDir(path);
 
-          return await callback(
-            path,
-            this.getFileAfterPath(path, defaultPath)
-          );
+          return await callback(path, this.getFileAfterPath(path, defaultPath));
         })
       );
     return await loadDir(path);
