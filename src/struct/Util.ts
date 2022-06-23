@@ -20,8 +20,8 @@ export default class Util {
   };
 
   public static getFileAfterPath(path: string, defaultPath: string): string {
-    const pathArr = path.split(_path.sep);
-    const defaultPathArr = defaultPath.split(_path.sep);
+    const pathArr = path.split("/");
+    const defaultPathArr = defaultPath.split("/");
     return pathArr.filter((i) => defaultPathArr.indexOf(i) < 0).join("//");
   }
 }

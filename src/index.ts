@@ -12,11 +12,11 @@ app.get("/file", (req, res) => {
   if (!dir) return res.status(400).send("Dir is required");
 
   try {
-    const path = _path.resolve(`${app.path}${decodeURI(dir)}`);
+    const path = _path.resolve(`${app.path}/${decodeURI(dir)}`);
     const file = existsSync(path) ? createReadStream(path) : null;
 
     if (file) {
-      res.status(200);
+      res.writeHead(200, { "Content-Type": "video/mp4" });
       file.pipe(res);
     } else throw new Error("File not found");
   } catch (err) {
