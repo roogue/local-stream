@@ -1,4 +1,4 @@
-import { createReadStream, existsSync } from "fs";
+import { createReadStream, existsSync, statSync } from "fs";
 import * as _path from "path";
 import Client from "./struct/Client";
 import { config } from "./config";
@@ -11,18 +11,44 @@ app.get("/file", (req, res) => {
   const dir = req.query.dir as string | undefined;
   if (!dir) return res.status(400).send("Dir is required");
 
-  try {
-    const path = _path.resolve(`${app.path}/${decodeURI(dir)}`);
-    const file = existsSync(path) ? createReadStream(path) : null;
+  res.render(_path.join(__dirname + "/../public/index.ejs"), {
+    dir,
+  });
+});
 
-    if (file) {
-      res.writeHead(200, { "Content-Type": "video/mp4" });
-      file.pipe(res);
-    } else throw new Error("File not found");
-  } catch (err) {
-    const errorMessage = (err as Error).message;
-    res.status(404).send(errorMessage);
-    console.error(errorMessage);
+app.get("/video", (req, res) => {
+  const dir = req.query.dir as string | undefined;
+  if (!dir) return res.sendStatus(404);
+
+  const path = _path.resolve(`${app.path}/${decodeURI(dir)}`);
+
+  const stat = statSync(path);
+  const fileSize = stat.size;
+  const range = req.headers.range;
+
+  if (range) {
+    const parts = range.replace(/bytes=/, "").split("-");
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+    const chunksize = end - start + 1;
+    const file = createReadStream(path, { start, end });
+    const head = {
+      "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": chunksize,
+      "Content-Type": "video/mp4",
+    };
+
+    res.writeHead(206, head);
+    file.pipe(res);
+  } else {
+    const head = {
+      "Content-Length": fileSize,
+      "Content-Type": "video/mp4",
+    };
+    res.writeHead(200, head);
+    createReadStream(path).pipe(res);
   }
 });
 
