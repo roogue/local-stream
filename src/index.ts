@@ -6,6 +6,7 @@ import Util from "./struct/Util";
 
 const { port, dir } = config;
 const app = new Client(port, dir);
+app.load()
 
 app.get("/file", (req, res) => {
   const dir = req.query.dir as string | undefined;
