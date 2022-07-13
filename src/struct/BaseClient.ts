@@ -8,7 +8,7 @@ export default class BaseClient {
   constructor(port: number) {
     this.port = port;
   }
-
+  
   public get(
     path: string,
     callback: (req: express.Request, res: express.Response) => void

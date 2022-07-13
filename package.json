@@ -1,17 +1,24 @@
 {
   "name": "local-stream",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p .",
-    "start": "yarn run build && node ."
+    "start": "yarn run build && node .",
+    "build-app-win": "yarn build && pkg -t node16-win-x64 -o ./build/win-64/local-stream.exe ./dist/index.js --public",
+    "build-app-linux": "yarn build && pkg -t node16-linux -o ./build/linux-arm64/local-stream ./dist/index.js --public"
   },
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "ini": "^3.0.0",
     "ip": "^1.1.8"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*"
+    ]
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

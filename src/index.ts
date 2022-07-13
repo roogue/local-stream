@@ -1,4 +1,4 @@
-import { createReadStream, existsSync, statSync } from "fs";
+import { createReadStream, statSync } from "fs";
 import * as _path from "path";
 import Client from "./struct/Client";
 import { config } from "./config";
@@ -11,7 +11,7 @@ app.get("/file", (req, res) => {
   const dir = req.query.dir as string | undefined;
   if (!dir) return res.status(400).send("Dir is required");
 
-  res.render(_path.join(__dirname + "/../public/index.ejs"), {
+  res.render("html/index.ejs", {
     dir,
   });
 });

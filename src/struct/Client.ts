@@ -1,4 +1,6 @@
+import express from "express";
 import BaseClient from "./BaseClient";
+import _path from "path";
 
 export default class Client extends BaseClient {
   path: string;
@@ -7,5 +9,9 @@ export default class Client extends BaseClient {
     super(port);
     this.path = path ?? process.cwd();
   }
-  
+
+  public load() {
+    this.client.set("view engine", "ejs");
+    this.client.engine("ejs", require("ejs").__express);
+  }
 }
