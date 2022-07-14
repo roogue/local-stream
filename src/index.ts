@@ -1,20 +1,19 @@
 import { createReadStream, statSync } from "fs";
-import * as _path from "path";
+import _path from "path";
 import Client from "./struct/Client";
 import { config } from "./config";
 import Util from "./struct/Util";
+import FileData from "./struct/FileInfo";
 
 const { port, dir } = config;
 const app = new Client(port, dir);
-app.load()
+app.load();
 
 app.get("/file", (req, res) => {
   const dir = req.query.dir as string | undefined;
   if (!dir) return res.status(400).send("Dir is required");
 
-  res.render("html/index.ejs", {
-    dir,
-  });
+  return res.render("html/index.ejs", { dir });
 });
 
 app.get("/video", (req, res) => {
@@ -42,24 +41,25 @@ app.get("/video", (req, res) => {
     };
 
     res.writeHead(206, head);
-    file.pipe(res);
+    return file.pipe(res);
   } else {
     const head = {
       "Content-Length": fileSize,
       "Content-Type": "video/mp4",
     };
     res.writeHead(200, head);
-    createReadStream(path).pipe(res);
+    return createReadStream(path).pipe(res);
   }
 });
 
 app.get("/list", async (_, res) => {
   const path = app.path;
-  const files: string[] = [];
+  const files: FileData[] = [];
 
-  await Util.loadFiles(path, app.path, async (_, shorts: string) =>
-    files.push(shorts)
-  );
+  Util.loadFiles(path, (dir) => {
+    const file = new FileData(dir);
+    if (Util.isVideoExt(file.shortPath)) files.push(file);
+  });
 
   res.send(files);
 });

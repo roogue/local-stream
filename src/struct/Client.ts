@@ -1,13 +1,12 @@
-import express from "express";
 import BaseClient from "./BaseClient";
 import _path from "path";
 
 export default class Client extends BaseClient {
   path: string;
 
-  constructor(port: number, path?: string) {
+  constructor(port: number, path: string) {
     super(port);
-    this.path = path ?? process.cwd();
+    this.path = path;
   }
 
   public load() {
