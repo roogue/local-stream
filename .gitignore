@@ -110,7 +110,7 @@ streams
 build
 
 #config
-.ini
+config.ini
 
 #yarn
 .yarn/*
