@@ -1,8 +1,8 @@
 [General]
-; Default port (7237)
-port = 7237
+; Default port (7237), do not change if you don't know what you are doing.
+port = 7237 
 
-; Path to your video contained folder.
-; Use double backslash (\\) or single slash (/) as directory seperator to avoid unwanted error, Example: "C:\\User\\Path\\To\\Folder"
-; If none was provided, it will use the current working directory.
-dir = "C:\\User\\Path\\To\\Folder"
+; Directory, change to your stream folder path, avoid changing to root directory
+; If none was provided, the program will use the current working directory. 
+; Warning: Use double backslash (\\) or single slash (/) as directory separator to avoid unwanted error, Example: "C:\\User\\Path\\To\\Folder"
+dir = ""
