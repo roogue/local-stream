@@ -1,8 +1,0 @@
-[General]
-; Default port (7237), do not change if you don't know what you are doing.
-port = 7237 
-
-; Directory, change to your stream folder path, avoid changing to root directory
-; If none was provided, the program will use the current working directory. 
-; Warning: Use double backslash (\\) or single slash (/) as directory separator to avoid unwanted error, Example: "C:\\User\\Path\\To\\Folder"
-dir = ""
