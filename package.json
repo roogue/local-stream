@@ -12,6 +12,12 @@
     "start": "yarn run build-ts && electron ."
   },
   "devDependencies": {
-    "electron": "^19.0.8"
+    "@types/ip": "^1.1.0",
+    "electron": "^19.0.8",
+    "tslib": "^2.4.0"
+  },
+  "dependencies": {
+    "bootstrap": "5.2.0-beta1",
+    "ip": "^1.1.8"
   }
 }
