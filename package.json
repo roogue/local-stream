@@ -1,0 +1,17 @@
+{
+  "name": "local-stream",
+  "version": "1.2.0",
+  "description": "A program that help in local server steaming ",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/roogue/local-stream.git",
+  "author": "roogue <57899698+roogue@users.noreply.github.com>",
+  "license": "MIT",
+  "packageManager": "yarn@3.2.1",
+  "scripts": {
+    "build-ts": "tsc -p .",
+    "start": "yarn run build-ts && electron ."
+  },
+  "devDependencies": {
+    "electron": "^19.0.8"
+  }
+}
