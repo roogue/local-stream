@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html class="max-h">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Local Stream Server</title>
+    <link
+      rel="stylesheet"
+      href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../css/colors.css" />
+    <link rel="stylesheet" href="../css/size.css" />
+  </head>
+  <body class="max-h">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="card card-width shadow">
+        <div class="card-body">
+          <h1 class="card-title text-main">Local Stream Server</h1>
+
+          <div class="p-2">
+            <div class="card-text">
+              <label>Your Local Ip Address:</label>
+            </div>
+            <div class="card-text">
+              <label id="local-ip-address"></label>
+            </div>
+          </div>
+          
+          <div class="p-2">
+            <div class="card-text">
+              <label
+                >Your Local Port: 
+              </label>
+            </div>  
+            <div class="card-text d-flex flex-row">
+              <input class="form-control" type="text" id="port-exposed"></input>
+              <button class="btn btn-dark mx-1" type="button" id="changePortBtn">Change</button>
+            </div>
+          </div>
+
+          <div class="p-2">
+            <div class="card-text">
+              <label> Directory </label>
+            </div>  
+            <div class="card-text d-flex flex-row">
+              <input class="form-control" type="text" id="directory"></input>
+              <button class="btn btn-dark mx-1" type="button" id="selectDirectory">Select</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Copyright @ roogue | Do not close this window while streaming.</small>
+        </div>   
+      </div>
+    </div>
+
+    <script src="../js/renderer.js"></script>
+  </body>
+</html>

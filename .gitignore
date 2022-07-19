@@ -114,3 +114,6 @@ streams
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# config 
+config.json
