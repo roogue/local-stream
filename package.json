@@ -1,6 +1,6 @@
 {
   "name": "local-stream",
-  "version": "v1.2.0",
+  "version": "1.2.0",
   "description": "A program that help in local server steaming ",
   "main": "./dist/index.js",
   "repository": "https://github.com/roogue/local-stream.git",
